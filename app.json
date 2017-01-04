@@ -3,11 +3,11 @@
   "description": "A boilerplate facebook Java bot, which can easily be deployed to Heroku.",
   "env": {
     "ACCESS_TOKEN": {
-      "description": "access token for Facebook bot. please copy the value FROM dev console.",
+      "description": "EAAC22wNah1wBAEXIaPnrZBPI8IqrpuBWcDqDHLlJsQUAbmYlZARk6wWxjOOm1aKYILJBmn8aTzrPHEhy0fYwOWZBcAetwxM6PHKwj1CLZBswluS8OamSPWcWntjXd5DZCBbLSnupZBX8cxEuh9gIpnOLzNaCQfMLqviVJvg2VOJ3WTYKmcGcYa",
       "required": true
     },
     "VALIDATION_TOKEN": {
-      "description": "validateion token for webhook in Facebook bot. please copy this value TO dev console",
+      "description": "22e3x",
       "required": true,
       "generator": "secret"
     }
