@@ -114,6 +114,11 @@ public class Main {
             Message.Text(botSay).sendTo(senderId);
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                Message.Text("Error: " + e.getMessage()).sendTo(senderId);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
     }
 
