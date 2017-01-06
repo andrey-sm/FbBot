@@ -115,7 +115,7 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
             try {
-                Message.Text("Error: " + e.getMessage()).sendTo(senderId);
+                Message.Text("Error: " + e.toString() + " |" +  e.getStackTrace().toString()).sendTo(senderId);
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
