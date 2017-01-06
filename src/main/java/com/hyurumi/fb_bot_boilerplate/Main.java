@@ -11,6 +11,7 @@ import okhttp3.*;
 
 import java.util.List;
 import java.util.Random;
+import java.util.StringJoiner;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -51,23 +52,26 @@ public class Main {
                 String senderId = messaging.sender.id;
                 if (messaging.message !=null) {
                     // Receiving text message
-                    switch (sRandom.nextInt(4)){
-                        case 0:
-                            if (messaging.message.text != null)
-                                Message.Text(messaging.message.text).sendTo(senderId);
-                            else
-                                sendSampleGenericMessage(senderId);
-                            break;
-                        case 1:
-                            Message.Image("https://unsplash.it/764/400?image=200").sendTo(senderId);
-                            break;
-                        case 2:
-                            sendSampleGenericMessage(senderId);
-                            break;
-                        default:
-                            sendSamplePostBackMessage(senderId);
-                            break;
-                    }
+/////////////////////////////////////////////
+//                    switch (sRandom.nextInt(4)){
+//                        case 0:
+//                            if (messaging.message.text != null)
+//                                Message.Text(messaging.message.text).sendTo(senderId);
+//                            else
+//                                sendSampleGenericMessage(senderId);
+//                            break;
+//                        case 1:
+//                            Message.Image("https://unsplash.it/764/400?image=200").sendTo(senderId);
+//                            break;
+//                        case 2:
+//                            sendSampleGenericMessage(senderId);
+//                            break;
+//                        default:
+//                            sendSamplePostBackMessage(senderId);
+//                            break;
+//                    }
+
+                    botRequest(senderId);
 
                 } else if (messaging.postback != null) {
                     // Receiving postback message
@@ -85,6 +89,23 @@ public class Main {
             }
             return "";
         });
+    }
+
+    public static void botRequest(String senderId) {
+//        get("http://api.program-o.com/v2/chatbot/?bot_id=6&say=what%20is%20in%20cinema?&convo_id=x1&format=json", (request1, response1) -> {
+//
+//            sendSamplePostBackMessage(senderId);
+//                    return "";
+//                }
+//        );
+
+        try {
+            String result = HttpURLConnectionExample.sendGet("http://api.program-o.com/v2/chatbot/?bot_id=6&say=what%20is%20in%20cinema?&convo_id=x1&format=json");
+            Message message = Message.Button(result);
+            message.sendTo(senderId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     static private void sendSamplePostBackMessage(String senderId) throws Exception {
