@@ -3,7 +3,7 @@
   "description": "A boilerplate facebook Java bot, which can easily be deployed to Heroku.",
   "env": {
     "ACCESS_TOKEN": {
-      "description": "EAAC22wNah1wBAGFdPvXBn5jfQvM1z7gxAvXgUmZAaNK0KCe6ZBSJcvNbHNx7lAt3JP4dSqAPcv7383syXYQhc0cjpikkcjeYItjpKSGSFKP4rYZCmdHZAeeV58rouaZCm8UZBJwpWaVpirPKVp1cBx3uLpFa4PIfzxQ60ZCPdkhmZBMCyTf2mm3g",
+      "description": "EAAC22wNah1wBAOzZBkf5AV8piotRjYw9A2ZBD6FKoPtKujxCSnq1rfOLHJfxlBZCBrYZCkMKUKk6qz6KCVWDX4F6jTnSO3HQ5NXStbmyfLJXo7s7KOfbOpFF3OSAJsgTxvvaZBdWvWMz3BalroZAvBkQgB5vZBTkkqxZBC4386cTpKotdqpy8wGF",
       "required": true
     },
     "VALIDATION_TOKEN": {
