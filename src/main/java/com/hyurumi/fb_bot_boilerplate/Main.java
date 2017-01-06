@@ -1,6 +1,7 @@
 package com.hyurumi.fb_bot_boilerplate;
 
 import com.google.gson.Gson;
+import com.hyurumi.fb_bot_boilerplate.api.rs.ApiBotResponse;
 import com.hyurumi.fb_bot_boilerplate.models.common.Action;
 import com.hyurumi.fb_bot_boilerplate.models.send.Button;
 import com.hyurumi.fb_bot_boilerplate.models.send.Element;
@@ -19,6 +20,10 @@ import static spark.Spark.post;
 import static spark.SparkBase.port;
 
 public class Main {
+
+    private static final String PROGRAM_O = "Program-O";
+    private static final String SMARTUM_BOT = "SmartumBot";
+
     public static  String sAccessToken;
     private static String sValidationToken;
     public static final String END_POINT;
@@ -95,29 +100,20 @@ public class Main {
 
     public static void botRequest(String message, String senderId) {
         message = message.replaceAll(" ", "%20");
-//        get("http://api.program-o.com/v2/chatbot/?bot_id=6&say=what%20is%20in%20cinema?&convo_id=x1&format=json", (request1, response1) -> {
-//
-//            sendSamplePostBackMessage(senderId);
-//                    return "";
-//                }
-//        );
-
         try {
             String url = "http://api.program-o.com/v2/chatbot/?" +
                     "bot_id=6" +
                     "&say=" + message +
                     "&convo_id=x1" +
                     "&format=json";
-            String result = HttpURLConnectionExample.sendGet(url);
 
-            Message.Text("Response: " + result).sendTo(senderId);
+            String apiBotRs = HttpURLConnectionExample.sendGet(url);
+
+            ApiBotResponse apiBotResponse = GSON.fromJson(apiBotRs, ApiBotResponse.class);
+            String botSay = apiBotResponse.botSay.replaceAll(PROGRAM_O, SMARTUM_BOT);
+            Message.Text(botSay).sendTo(senderId);
         } catch (Exception e) {
             e.printStackTrace();
-            try {
-                Message.Text("Error: " + e.getMessage()).sendTo(senderId);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
         }
     }
 
