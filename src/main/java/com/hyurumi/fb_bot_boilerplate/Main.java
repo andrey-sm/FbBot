@@ -108,11 +108,8 @@ public class Main {
                     "&format=json";
 
             String apiBotRs = HttpURLConnectionExample.sendGet(url);
-            Message.Text("apiBotRs = " + apiBotRs).sendTo(senderId);
             ApiBotResponse apiBotResponse = new Gson().fromJson(apiBotRs, ApiBotResponse.class);
-            Message.Text("apiBotResponse.botSay = " + apiBotResponse.botSay).sendTo(senderId);
             String botSay = apiBotResponse.botSay.replaceAll(PROGRAM_O, SMARTUM_BOT);
-            Message.Text("botSay = " + botSay).sendTo(senderId);
             Message.Text(botSay).sendTo(senderId);
         } catch (Exception e) {
             e.printStackTrace();
