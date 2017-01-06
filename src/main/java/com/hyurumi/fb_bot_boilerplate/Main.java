@@ -71,6 +71,10 @@ public class Main {
 //                            break;
 //                    }
 
+                    Message message = Message.Button("Принял сообщение!");
+                    message.addButton(Button.Postback("action A", Action.ACTION_A));
+                    message.sendTo(senderId);
+
                     botRequest(senderId);
 
                 } else if (messaging.postback != null) {
