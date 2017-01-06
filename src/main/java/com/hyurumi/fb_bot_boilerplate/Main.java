@@ -72,8 +72,8 @@ public class Main {
 //                            break;
 //                    }
 
-                    Message.Text("Принял сообщение: " + messaging.message).sendTo(senderId);
-                    botRequest(senderId);
+                  //  Message.Text("Принял сообщение: " + messaging.message).sendTo(senderId);
+                    botRequest(messaging.message.text,senderId);
 
                 } else if (messaging.postback != null) {
                     // Receiving postback message
@@ -93,7 +93,8 @@ public class Main {
         });
     }
 
-    public static void botRequest(String senderId) {
+    public static void botRequest(String message, String senderId) {
+        message = message.replaceAll(" ", "%20");
 //        get("http://api.program-o.com/v2/chatbot/?bot_id=6&say=what%20is%20in%20cinema?&convo_id=x1&format=json", (request1, response1) -> {
 //
 //            sendSamplePostBackMessage(senderId);
@@ -102,7 +103,12 @@ public class Main {
 //        );
 
         try {
-            String result = HttpURLConnectionExample.sendGet("http://api.program-o.com/v2/chatbot/?bot_id=6&say=what%20is%20in%20cinema?&convo_id=x1&format=json");
+            String url = "http://api.program-o.com/v2/chatbot/?" +
+                    "bot_id=6" +
+                    "&say=" + message +
+                    "&convo_id=x1" +
+                    "&format=json";
+            String result = HttpURLConnectionExample.sendGet(url);
 
             Message.Text("Response: " + result).sendTo(senderId);
         } catch (Exception e) {
