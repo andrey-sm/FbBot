@@ -9,6 +9,7 @@ import com.hyurumi.fb_bot_boilerplate.models.webhook.Messaging;
 import com.hyurumi.fb_bot_boilerplate.models.webhook.ReceivedMessage;
 import okhttp3.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 import java.util.StringJoiner;
@@ -71,10 +72,7 @@ public class Main {
 //                            break;
 //                    }
 
-                    Message message = Message.Button("Принял сообщение!");
-                    message.addButton(Button.Postback("action A", Action.ACTION_A));
-                    message.sendTo(senderId);
-
+                    Message.Text("Принял сообщение: " + messaging.message).sendTo(senderId);
                     botRequest(senderId);
 
                 } else if (messaging.postback != null) {
@@ -105,10 +103,15 @@ public class Main {
 
         try {
             String result = HttpURLConnectionExample.sendGet("http://api.program-o.com/v2/chatbot/?bot_id=6&say=what%20is%20in%20cinema?&convo_id=x1&format=json");
-            Message message = Message.Button(result);
-            message.sendTo(senderId);
+
+            Message.Text("Response: " + result).sendTo(senderId);
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                Message.Text("Error: " + e.getMessage()).sendTo(senderId);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
     }
 
