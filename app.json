@@ -1,0 +1,15 @@
+{
+  "name": "Java FB Bot Example",
+  "description": "A boilerplate facebook Java bot, which can easily be deployed to Heroku.",
+  "env": {
+    "ACCESS_TOKEN": {
+      "description": "EAAC22wNah1wBAOzZBkf5AV8piotRjYw9A2ZBD6FKoPtKujxCSnq1rfOLHJfxlBZCBrYZCkMKUKk6qz6KCVWDX4F6jTnSO3HQ5NXStbmyfLJXo7s7KOfbOpFF3OSAJsgTxvvaZBdWvWMz3BalroZAvBkQgB5vZBTkkqxZBC4386cTpKotdqpy8wGF",
+      "required": true
+    },
+    "VALIDATION_TOKEN": {
+      "description": "22e3x",
+      "required": true,
+      "generator": "secret"
+    }
+  }
+}
