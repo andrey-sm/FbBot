@@ -1,3 +1,6 @@
+# FbBot
+Sm fb bot
+
 # fb-bot-boilarplate-java
 A facebook bot boilerplate in Java, which can easily be deployed to Heroku.
 
