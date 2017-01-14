@@ -8,12 +8,11 @@ import com.hyurumi.fb_bot_boilerplate.models.send.Element;
 import com.hyurumi.fb_bot_boilerplate.models.send.Message;
 import com.hyurumi.fb_bot_boilerplate.models.webhook.Messaging;
 import com.hyurumi.fb_bot_boilerplate.models.webhook.ReceivedMessage;
-import okhttp3.*;
+import okhttp3.MediaType;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Random;
-import java.util.StringJoiner;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -45,6 +44,8 @@ public class Main {
         port(Integer.valueOf(System.getenv("PORT")));
 
         get("/webhook", (request, response) -> {
+            System.out.println("****** GET ATTRS ****: " + request.attributes().toString());
+            System.out.println("****** GET BODY ****: " + request.body());
             if (request.queryMap("hub.verify_token").value().equals(sValidationToken)) {
                 return request.queryMap("hub.challenge").value();
             }
@@ -52,6 +53,8 @@ public class Main {
         });
 
         post("/webhook", (request, response) -> {
+            System.out.println("****** POST ATTRS ****: " + request.attributes().toString());
+            System.out.println("****** POST BODY ****: " + request.body());
             ReceivedMessage receivedMessage = GSON.fromJson(request.body(), ReceivedMessage.class);
             List<Messaging> messagings = receivedMessage.entry.get(0).messaging;
             for (Messaging messaging : messagings) {
